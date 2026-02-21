@@ -1,0 +1,19 @@
+.widget-root {
+    -fx-background-color: rgba(255, 255, 255, 0.96);
+    -fx-background-radius: 18;
+    -fx-border-color: rgba(148, 163, 184, 0.55);
+    -fx-border-radius: 18;
+    -fx-padding: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.22), 14, 0.2, 0, 3);
+}
+
+.widget-button {
+    -fx-min-width: 56;
+    -fx-min-height: 56;
+    -fx-max-width: 56;
+    -fx-max-height: 56;
+    -fx-background-radius: 999;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}

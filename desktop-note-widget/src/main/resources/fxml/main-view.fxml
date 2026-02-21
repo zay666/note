@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<BorderPane fx:id="rootPane"
+            prefHeight="780.0"
+            prefWidth="1300.0"
+            styleClass="app-root"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.notewidget.controller.MainController">
+
+    <top>
+        <ToolBar>
+            <items>
+                <Button mnemonicParsing="false" onAction="#handleOpenMarkdown" text="打开 .md"/>
+                <Button mnemonicParsing="false" onAction="#handleUploadImage" text="上传图片"/>
+                <Button mnemonicParsing="false" onAction="#handleNewTempNote" text="新建临时"/>
+                <Button mnemonicParsing="false" onAction="#handleSaveCurrent" text="保存"/>
+                <Button mnemonicParsing="false" onAction="#handleSaveAs" text="另存为"/>
+                <Button mnemonicParsing="false" onAction="#handleExitApp" text="退出"/>
+                <Pane HBox.hgrow="ALWAYS" prefWidth="0.0"/>
+                <Label fx:id="statusLabel" styleClass="status-label" text="就绪"/>
+            </items>
+        </ToolBar>
+    </top>
+
+    <center>
+        <SplitPane fx:id="mainSplitPane">
+            <items>
+                <VBox spacing="8.0" styleClass="panel-box">
+                    <padding>
+                        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+                    </padding>
+                    <children>
+                        <Label styleClass="panel-title" text="文件列表"/>
+                        <ListView fx:id="fileListView" VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0" styleClass="panel-box">
+                    <padding>
+                        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+                    </padding>
+                    <children>
+                        <Label fx:id="editorTitleLabel" styleClass="panel-title" text="未选择文件"/>
+                        <TextArea fx:id="editorArea"
+                                  promptText="在这里写 Markdown..."
+                                  wrapText="true"
+                                  VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8.0" styleClass="panel-box">
+                    <padding>
+                        <Insets top="12.0" right="12.0" bottom="12.0" left="12.0"/>
+                    </padding>
+                    <children>
+                        <Label styleClass="panel-title" text="实时预览"/>
+                        <WebView fx:id="previewWebView" VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>

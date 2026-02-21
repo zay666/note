@@ -1,0 +1,8 @@
+com\example\notewidget\model\NoteDocument.class
+com\example\notewidget\service\NoteStorageService.class
+com\example\notewidget\controller\MainController.class
+com\example\notewidget\NoteWidgetApp.class
+com\example\notewidget\controller\WidgetController.class
+com\example\notewidget\util\AppPaths.class
+com\example\notewidget\controller\MainController$1.class
+com\example\notewidget\service\MarkdownService.class

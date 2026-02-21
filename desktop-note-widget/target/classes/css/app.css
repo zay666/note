@@ -1,0 +1,50 @@
+.root {
+    -fx-font-family: "Microsoft YaHei UI", "PingFang SC", "SimHei", "Noto Sans CJK SC", "Segoe UI", sans-serif;
+}
+
+.app-root {
+    -fx-background-color: #f7f8fa;
+}
+
+.tool-bar {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 8 10 8 10;
+}
+
+.button {
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.panel-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 0;
+}
+
+.panel-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #374151;
+}
+
+.list-view,
+.text-area,
+.web-view {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+}
+
+.text-area {
+    -fx-font-size: 14px;
+    -fx-line-spacing: 2px;
+}
+
+.status-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+}
