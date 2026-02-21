@@ -7,8 +7,9 @@ Markdown 实时预览（编辑时右侧同步渲染）。
 鼠标移到挂件上即显示主窗口。
 鼠标离开后若无后续操作会自动隐藏。
 一旦在主窗口有操作（点击/键盘），窗口会保留，不自动收起。
+## 项目结构
 
-项目结构：
+```text
 desktop-note-widget/
 ├─ pom.xml
 └─ src/
@@ -33,3 +34,4 @@ desktop-note-widget/
          └─ fxml/
             ├─ main-view.fxml
             └─ widget-view.fxml
+```
