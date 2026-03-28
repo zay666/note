@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane fx:id="widgetRoot"
-           prefHeight="72.0"
-           prefWidth="72.0"
+           prefHeight="48.0"
+           prefWidth="48.0"
            styleClass="widget-root"
            xmlns="http://javafx.com/javafx/21"
            xmlns:fx="http://javafx.com/fxml/1"

@@ -1,6 +1,8 @@
 package com.example.notewidget.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -10,9 +12,12 @@ public class WidgetController {
 
     private static final String KEY_WIDGET_X = "widget.x";
     private static final String KEY_WIDGET_Y = "widget.y";
+    private static final double DRAG_THRESHOLD = 5.0;
 
     @FXML
     private StackPane widgetRoot;
+    @FXML
+    private Button openButton;
 
     private final Preferences preferences = Preferences.userNodeForPackage(WidgetController.class);
 
@@ -23,26 +28,47 @@ public class WidgetController {
 
     private double dragOffsetX;
     private double dragOffsetY;
+    private double pressScreenX;
+    private double pressScreenY;
+    private boolean dragging;
 
     @FXML
     private void initialize() {
-        widgetRoot.setOnMousePressed(event -> {
+        // 在捕获阶段拦截鼠标事件，防止 Button 吞掉拖拽
+        widgetRoot.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
             if (widgetStage == null) {
                 return;
             }
             dragOffsetX = event.getScreenX() - widgetStage.getX();
             dragOffsetY = event.getScreenY() - widgetStage.getY();
+            pressScreenX = event.getScreenX();
+            pressScreenY = event.getScreenY();
+            dragging = false;
         });
 
-        widgetRoot.setOnMouseDragged(event -> {
+        widgetRoot.addEventFilter(MouseEvent.MOUSE_DRAGGED, event -> {
             if (widgetStage == null) {
                 return;
             }
-            widgetStage.setX(event.getScreenX() - dragOffsetX);
-            widgetStage.setY(event.getScreenY() - dragOffsetY);
+            double dx = event.getScreenX() - pressScreenX;
+            double dy = event.getScreenY() - pressScreenY;
+            if (!dragging && (dx * dx + dy * dy) >= DRAG_THRESHOLD * DRAG_THRESHOLD) {
+                dragging = true;
+            }
+            if (dragging) {
+                widgetStage.setX(event.getScreenX() - dragOffsetX);
+                widgetStage.setY(event.getScreenY() - dragOffsetY);
+                event.consume(); // 阻止事件传递给 Button
+            }
         });
 
-        widgetRoot.setOnMouseReleased(event -> saveWidgetPosition());
+        widgetRoot.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> {
+            if (dragging) {
+                saveWidgetPosition();
+                event.consume(); // 拖拽结束不触发按钮点击
+            }
+            dragging = false;
+        });
 
         widgetRoot.setOnMouseEntered(event -> {
             if (hoverEnteredAction != null) {
